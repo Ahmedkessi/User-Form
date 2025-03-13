@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Register</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .page-1, .page-3 {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+
+    .form {
+      height: 500px;
+      width: 380px;
+      background-color: rgba(220, 229, 236, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form h3 {
+      font-family: sans-serif;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .add-photo {
+      height: 100px;
+      width: 100px;
+      background-color: white;
+      border-radius: 50%;
+      border: 2px solid rgb(30, 236, 3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .add-photo p {
+      font-size: 50px;
+      color: rgb(30, 236, 3);
+    }
+
+    .add-photo input {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .text {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .text input {
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .text input:focus {
+      outline: none;
+      border-color: rgb(30, 236, 3);
+    }
+
+    .submit {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .submit button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      background-color: rgb(30, 236, 3);
+      color: white;
+    }
+
+    .submit-btn:hover {
+      background-color: rgb(25, 200, 3);
+    }
+
+    .cencel-btn {
+      background-color: #ccc;
+      margin-top: 10px;
+    }
+
+    .cencel-btn:hover {
+      background-color: #bbb;
+    }
+
+    .page-2 {
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .head {
+      height: 80px;
+      width: 100%;
+      background: linear-gradient(to right, rgba(7, 158, 7, 0.671), rgb(3, 107, 43));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+    }
+
+    .logo p {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .add-new {
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    .form-result-head, .form-result {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 20% 20% 20% 20%;
+      gap: 5%;
+      text-align: center;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .form-result-head {
+      margin-top: 80px;
+    }
+
+    .form-result .image {
+      height: 100px;
+      width: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .form-result .edit {
+      padding: 5px;
+      border: none;
+      background-color: rgb(30, 236, 3);
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .form-result .edit:hover {
+      opacity: 0.8;
+    }
+
+    .ins-p-3 {
+      height: 300px;
+      width: 400px;
+      background-color: white;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .container .image{
+      height: 100px;
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    .delete {
+      background-color: red;
+      color: white;
+    }
+
+    .cencel {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- PAGE 1: Form Register -->
+  <div class="page-1">
+    <form class="form">
+      <h3>Form Register</h3>
+      <div class="add-photo">
+        <p>+</p>
+        <input type="file" class="file" accept="image/*">
+      </div>
+      <div class="text">
+        <input type="text" class="name" placeholder="Enter your name">
+        <input type="tel" class="number" placeholder="Your phone number">
+      </div>
+      <div class="submit">
+        <button type="button" class="submit-btn">Submit</button>
+        <button type="reset" class="cencel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- PAGE 2: User Form -->
+  <div class="page-2">
+    <div class="head">
+      <div class="logo">
+        <img src="/AdobeStock_167235520_Preview.jpeg" alt="Logo">
+        <p>USER FORM</p>
+      </div>
+      <div class="add-new">+</div>
+    </div>
+    <div class="form-result-head">
+      <p>IMAGE</p>
+      <p>NAME</p>
+      <p>NUMBER</p>
+      <p>EDIT</p>
+    </div>
+    <div class="main">
+      <div class="form-result"></div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: Edit Form -->
+  <div class="page-3">
+    <div class="ins-p-3">
+      <div class="container">
+        <img class="image" src="" alt="">
+        <p class="name"></p>
+        <p class="number"></p>
+        <button class="delete">Delete</button>
+        <button class="cencel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // DOM Elements
+    const pageOne = document.querySelector('.page-1');
+    const pageTwo = document.querySelector('.page-2');
+    const pageThree = document.querySelector('.page-3');
+    const addPhoto = document.querySelector('.file');
+    const inputName = document.querySelector('.name');
+    const inputNumber = document.querySelector('.number');
+    const submitBtn = document.querySelector('.submit-btn');
+    const cencelBtn = document.querySelector('.cencel-btn');
+    const addNew = document.querySelector('.add-new');
+    const formResult = document.querySelector('.form-result');
+    const editButtons = document.querySelectorAll('.edit');
+    const deleteBtn = document.querySelector('.delete');
+    const cencelEditBtn = document.querySelector('.cencel');
+
+    // Data Storage
+    let taskForm = JSON.parse(localStorage.getItem('task')) || [];
+
+    // Render Form Results
+    function renderFormResults() {
+      let formHTML = '';
+      taskForm.forEach((task, index) => {
+        formHTML += `
+          <img class="image" src="${task.image}" alt="${task.name}">
+          <p class="name">${task.name}</p>
+          <p class="number">${task.number}</p>
+          <button class="edit" data-index="${index}">Edit</button>
+        `;
+      });
+      formResult.innerHTML = formHTML;
+    }
+
+    // Add New Entry
+    function addForm() {
+      const image = URL.createObjectURL(addPhoto.files[0]);
+      const name = inputName.value.trim();
+      const number = inputNumber.value.trim();
+
+      if (!name || !number || !addPhoto.files[0]) {
+        alert('Please fill all fields and upload an image.');
+        return;
+      }
+
+      taskForm.push({ image, name, number });
+      localStorage.setItem('task', JSON.stringify(taskForm));
+      renderFormResults();
+     
+      image = '';
+      name = '';
+      number = '';
+    }
+
+    // Event Listeners
+    addNew.addEventListener('click', () => {
+      pageOne.style.display = 'flex';
+      pageTwo.style.display = 'none';
+    });
+
+    cencelBtn.addEventListener('click', () => {
+      pageOne.style.display = 'none';
+      pageTwo.style.display = 'block';
+    });
+
+    submitBtn.addEventListener('click', addForm);
+
+    formResult.addEventListener('click', (e) => {
+      if (e.target.classList.contains('edit')) {
+        const index = e.target.dataset.index;
+        const task = taskForm[index];
+        pageThree.querySelector('.image').src = task.image;
+        pageThree.querySelector('.name').textContent = task.name;
+        pageThree.querySelector('.number').textContent = task.number;
+        pageThree.style.display = 'flex';
+
+        deleteBtn.onclick = () => {
+          taskForm.splice(index, 1);
+          localStorage.setItem('task', JSON.stringify(taskForm));
+          renderFormResults();
+          pageThree.style.display = 'none';
+        };
+
+        cencelEditBtn.onclick = () => {
+          pageThree.style.display = 'none';
+        };
+      }
+    });
+
+    // Initial Render
+    renderFormResults();
+  </script>
+</body>
+</html>
